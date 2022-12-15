@@ -12,6 +12,7 @@ class Api {
     return jsonOrThrowIfError(await fetch(`${this.baseUrl}${url}`, {headers, method: 'GET'}))
   }
   async post({url, data, headers}) {
+    console.log({url, data, headers})
     return jsonOrThrowIfError(await fetch(`${this.baseUrl}${url}`, {headers, method: 'POST', body: data}))
   }
   async delete({url, headers}) {
@@ -58,7 +59,7 @@ class Store {
   constructor() {
     this.api = new Api({baseUrl: 'http://localhost:5678'})
   }
-
+  // function user(uid) {  return new ApiEntity({key: 'users', api: this.api})).select({selector: uid}); }
   user = uid => (new ApiEntity({key: 'users', api: this.api})).select({selector: uid})
   users = () => new ApiEntity({key: 'users', api: this.api})
   login = (data) => this.api.post({url: '/auth/login', data, headers: getHeaders({noAuthorization: true})})
