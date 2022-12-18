@@ -28,12 +28,14 @@ export default () => {
 
     } else if (pathname === ROUTES_PATH['Bills']) {
 
+
       rootDiv.innerHTML = ROUTES({ pathname, loading: true })
       const divIcon1 = document.getElementById('layout-icon1')
       const divIcon2 = document.getElementById('layout-icon2')
       divIcon1.classList.add('active-icon')
       divIcon2.classList.remove('active-icon')
       const bills = new Bills({ document, onNavigate, store, localStorage  })
+      console.log("Route first New bills = " + bills)
       bills.getBills().then(data => {
         rootDiv.innerHTML = BillsUI({ data })
         const divIcon1 = document.getElementById('layout-icon1')
@@ -87,13 +89,18 @@ export default () => {
     document.body.style.backgroundColor="#0E5AE5"
   } else if (window.location.hash !== "") {
     if (window.location.hash === ROUTES_PATH['Bills']) {
+      
       rootDiv.innerHTML = ROUTES({ pathname: window.location.hash, loading: true })
+
       const divIcon1 = document.getElementById('layout-icon1')
       const divIcon2 = document.getElementById('layout-icon2')
       divIcon1.classList.add('active-icon')
       divIcon2.classList.remove('active-icon')
+
       const bills = new Bills({ document, onNavigate, store, localStorage  })
+
       bills.getBills().then(data => {
+    
         rootDiv.innerHTML = BillsUI({ data })
         const divIcon1 = document.getElementById('layout-icon1')
         const divIcon2 = document.getElementById('layout-icon2')
@@ -103,6 +110,7 @@ export default () => {
       }).catch(error => {
         rootDiv.innerHTML = ROUTES({ pathname: window.location.hash, error })
       })
+
     } else if (window.location.hash === ROUTES_PATH['NewBill']) {
       rootDiv.innerHTML = ROUTES({ pathname: window.location.hash, loading: true })
       new NewBill({ document, onNavigate, store, localStorage })
