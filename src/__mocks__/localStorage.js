@@ -14,4 +14,4 @@ export const localStorageMock = (function() {
       delete store[key]
     }
   }
-})()
+})

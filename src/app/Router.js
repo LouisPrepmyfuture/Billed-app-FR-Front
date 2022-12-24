@@ -102,10 +102,10 @@ export default () => {
       bills.getBills().then(data => {
     
         rootDiv.innerHTML = BillsUI({ data })
-        const divIcon1 = document.getElementById('layout-icon1')
-        const divIcon2 = document.getElementById('layout-icon2')
-        divIcon1.classList.add('active-icon')
-        divIcon2.classList.remove('active-icon')
+        // const divIcon1 = document.getElementById('layout-icon1')
+        // const divIcon2 = document.getElementById('layout-icon2')
+        // divIcon1.classList.add('active-icon')
+        // divIcon2.classList.remove('active-icon')
         new Bills({ document, onNavigate, store, localStorage })
       }).catch(error => {
         rootDiv.innerHTML = ROUTES({ pathname: window.location.hash, error })

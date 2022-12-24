@@ -36,7 +36,9 @@ label {
 .white-text {
   color: #fff;
 }
-
+#erreur-input{
+  border: #7700 solid 6px !important;
+}
 #btn-send-bill {
   width: 100px;
   background-color: #0E5AE5;
