@@ -10,7 +10,10 @@ export default class {
     const buttonNewBill = document.querySelector(`button[data-testid="btn-new-bill"]`)
     if (buttonNewBill) buttonNewBill.addEventListener('click', this.handleClickNewBill)
     const iconEye = document.querySelectorAll(`div[data-testid="icon-eye"]`)
+    console.log(iconEye)
     if (iconEye) iconEye.forEach(icon => {
+    console.log('je suis iv-conne')
+
       icon.addEventListener('click', () => this.handleClickIconEye(icon))
     })
     new Logout({ document, localStorage, onNavigate })
@@ -23,8 +26,14 @@ export default class {
   handleClickIconEye = (icon) => {
     const billUrl = icon.getAttribute("data-bill-url")
     const imgWidth = Math.floor($('#modaleFile').width() * 0.5)
-    $('#modaleFile').find(".modal-body").html(`<div style='text-align: center;' class="bill-proof-container"><img width=${imgWidth} src=${billUrl} alt="Bill" /></div>`)
-    $('#modaleFile').modal('show')
+ 
+    $("#modaleFile")
+    .find(".modal-body")
+    .html(
+      `<div style='text-align: center;'data-testid="modaleFile" class="bill-proof-container"><img width=${imgWidth} src=${billUrl} alt="Bill" /></div>`
+    );
+  if (typeof $("#modaleFile").modal === "function")
+    $("#modaleFile").modal("show");
   }
 
   getBills = () => {
@@ -36,7 +45,7 @@ export default class {
 
         // resolution add ligne 37 à 40
         snapshot.sort((a,b)=>{
-          return new Date(b.date) - new Date(a.date);
+          return new Date(a.date) - new Date(b.date);
         })
 
          const bills = snapshot
@@ -58,7 +67,7 @@ export default class {
               }
             }
           })
-      
+         
         return bills
       })
     }

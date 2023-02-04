@@ -9,6 +9,7 @@ import { localStorageMock } from "../__mocks__/localStorage.js"
 import DashboardUI from "../views/DashboardUI.js"
 import userEvent from '@testing-library/user-event'
 import { ROUTES } from "../constants/routes"
+import { error } from "console";
 
 const bills = [{
   "id": "47qAXb6fIm2zOKkLzMro",
@@ -29,13 +30,17 @@ const bills = [{
 describe('Given I am connected', () => {
   describe('When I click on disconnect button', () => {
     test(('Then, I should be sent to login page'), () => {
+      
       const onNavigate = (pathname) => {
         document.body.innerHTML = ROUTES({ pathname })
       }
-      Object.defineProperty(window, 'localStorage', { value: localStorageMock })
-      window.localStorage.setItem('user', JSON.stringify({
-        type: 'Admin'
+
+      Object.defineProperty(window, 'localStorage', { value: localStorageMock }) 
+
+        window.localStorage.setItem('user', JSON.stringify({
+          type: 'Admin'
       }))
+
       document.body.innerHTML = DashboardUI({ bills })
       const logout = new Logout({ document, onNavigate, localStorage })
       const handleClick = jest.fn(logout.handleClick)

@@ -43,7 +43,6 @@ export default class NewBill {
           }
         })
         .then(({fileUrl, key}) => {
-          console.log(fileUrl)
           this.billId = key
           this.fileUrl = fileUrl
           this.fileName = fileName
@@ -56,6 +55,7 @@ export default class NewBill {
         p.innerHTML = erreur
         p.setAttribute('style', 'color:red;')
         p.setAttribute('class', 'erreurFile')
+        p.setAttribute('data-testid', 'erreurFile')
         parentInputFile.appendChild(p)
     }
   }

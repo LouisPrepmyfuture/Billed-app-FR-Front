@@ -2953,7 +2953,7 @@ jest-environment-jsdom@^26.1.0:
     jest-util "^26.6.2"
     jsdom "^16.4.0"
 
-jest-environment-jsdom@^27.4.6:
+jest-environment-jsdom@^27.0.0:
   version "27.4.6"
   resolved "https://registry.npmjs.org/jest-environment-jsdom/-/jest-environment-jsdom-27.4.6.tgz"
   integrity sha512-o3dx5p/kHPbUlRvSNjypEcEtgs6LmvESMzgRFQE6c+Prwl2JLA4RZ7qAnxc5VM8kutsGRTB15jXeeSbJsKN9iA==

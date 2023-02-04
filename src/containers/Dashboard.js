@@ -93,9 +93,8 @@ export default class {
   // solution remettre this.counter a
   handleEditTicket(e, bill, bills) {
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
-    if (this.id === undefined || this.id !== bill.id) this.id = bill.id
+    if (this.id === undefined || this.id !== bill.id) this.id = bill.id 
 
-    console.log("handleEditTicket " + this.counter);
     if (this.counter % 2 === 0) {
       bills.forEach(b => {
         $(`#open-bill${b.id}`).css({ background: '#0D5AE5' })
@@ -108,12 +107,12 @@ export default class {
       $(`#open-bill${bill.id}`).css({ background: '#0D5AE5' })
 
       $('.dashboard-right-container div').html(`
-        <div id="big-billed-icon" data-testid="big-billed-icon"> ${BigBilledIcon} </div>
+        <div id="big-billed-icon" data-testid="big-billed-icon"> ${BigBilledIcon}</div>
       `)
       $('.vertical-navbar').css({ height: '120vh' })
       this.counter ++
     }
-    this.counter = 0
+    
     $('#icon-eye-d').click(this.handleClickIconEye)
     $('#btn-accept-bill').click((e) => this.handleAcceptSubmit(e, bill))
     $('#btn-refuse-bill').click((e) => this.handleRefuseSubmit(e, bill))
@@ -152,7 +151,6 @@ export default class {
         .html(cards(filteredBills(bills, getStatus(this.index))))
         this.openShowTickets[index] = true
     } else {
-      console.log("close");
       $(`#arrow-icon${this.index}`).css({ transform: 'rotate(90deg)'})
       $(`#status-bills-container${this.index}`).html("")
       this.openShowTickets[index] = false
@@ -160,11 +158,7 @@ export default class {
     bills.forEach(bill => {
       $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
     })
-
-    console.log("handleEditTicket " + this.counter_showTiscket);
- 
     return bills
-
   }
 
   getBillsAllUsers = () => {
@@ -187,7 +181,6 @@ export default class {
       })
     }
   }
-
   // not need to cover this function by tests
   /* istanbul ignore next */
   updateBill = (bill) => {

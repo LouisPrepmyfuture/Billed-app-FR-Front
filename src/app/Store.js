@@ -12,7 +12,6 @@ class Api {
     return jsonOrThrowIfError(await fetch(`${this.baseUrl}${url}`, {headers, method: 'GET'}))
   }
   async post({url, data, headers}) {
-    console.log({url, data, headers})
     return jsonOrThrowIfError(await fetch(`${this.baseUrl}${url}`, {headers, method: 'POST', body: data}))
   }
   async delete({url, headers}) {
