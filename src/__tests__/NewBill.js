@@ -195,7 +195,7 @@ describe("Given I am a user connected as Employee", () => {
 			expect(inputFile.files[0]).toStrictEqual(inputData.file);
 			expect(inputFile.files).toHaveLength(1);
 
-			// localStorage doit être rempli avec des données de formulaire
+			
 			Object.defineProperty(window, "localStorage", {
 				value: {
 					getItem: jest.fn(() =>
@@ -207,19 +207,19 @@ describe("Given I am a user connected as Employee", () => {
 				writable: true,
 			});
 
-			// nous devons simuler la navigation pour la tester
+			
 			const onNavigate = (pathname) => {
 				document.body.innerHTML = ROUTES({ pathname });
 			};
 
-			//initialisation NewBill
+
 			const newBill = new NewBill({
 				document,
 				onNavigate,
 				localStorage: window.localStorage,
 			});
 
-			//déclenchement de l'événement
+	
 			const handleSubmit = jest.fn(newBill.handleSubmit);
 			formNewBill.addEventListener("submit", handleSubmit);
 			fireEvent.submit(formNewBill);
