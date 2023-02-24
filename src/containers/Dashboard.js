@@ -88,7 +88,7 @@ export default class {
 		if (typeof $('#modaleFileAdmin1').modal === 'function') $('#modaleFileAdmin1').modal('show')
 	}
 
-	// solution remettre this.counter a
+	
   handleEditTicket(e, bill, bills) {
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
     if ($(`#open-bill${bill.id}`).hasClass('card-background')) {
@@ -131,10 +131,7 @@ export default class {
 		this.updateBill(newBill)
 		this.onNavigate(ROUTES_PATH['Dashboard'])
 	}
-	/**
-	 * modif 
-	 * counter % 2 === 0
-	 */
+
 	 handleShowTickets(e, bills, index) {
     if (this.index === undefined || this.index !== index) this.index = index
 

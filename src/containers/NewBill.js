@@ -15,8 +15,6 @@ export default class NewBill {
     this.billId = null
     new Logout({ document, localStorage, onNavigate })
   }
-
-
   handleChangeFile = e => {
     e.preventDefault()
     if(document.querySelector(".erreurFile") != undefined){
@@ -24,16 +22,14 @@ export default class NewBill {
       document.querySelector(".erreurFile").remove();
     }
     const extension = e.target.value.split(".").pop()
+		const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
+		const filePath = e.target.value.split(/\\/g)
+		const fileName = filePath[filePath.length-1]
+		const formData = new FormData()
+		const email = JSON.parse(localStorage.getItem("user")).email
+		formData.append('file', file)
+		formData.append('email', email)
     if(extension === "png" || extension === "jpg" || extension === "jpeg"){
-
-      const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
-      const filePath = e.target.value.split(/\\/g)
-      const fileName = filePath[filePath.length-1]
-      const formData = new FormData()
-      const email = JSON.parse(localStorage.getItem("user")).email
-      formData.append('file', file)
-      formData.append('email', email)
-
       this.store
         .bills()
         .create({
@@ -49,12 +45,10 @@ export default class NewBill {
         }).catch(error => console.error(error))
     }else{
         e.target.setAttribute('style', 'border: solid red 5px !important;')
-        let erreur = "Le Justificatif doit êtres au formas jpg, jeg, png" 
         let parentInputFile = document.querySelector('input[data-testid="file"]').parentElement
         let p = this.document.createElement("p")
-        p.innerHTML = erreur
+        p.innerHTML = "Le Justificatif doit êtres au formas jpg, jeg, png" 
         p.setAttribute('style', 'color:red;')
-        p.setAttribute('class', 'erreurFile')
         p.setAttribute('data-testid', 'erreurFile')
         parentInputFile.appendChild(p)
     }
